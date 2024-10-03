@@ -83,12 +83,12 @@ class ScannerRest(Scanner):
 
         timeStart = time.time()
         try:
-            res = req.post(f"{self.scanner_path}/scan", params=params, data=scanData, timeout=10)
+            res = req.post(f"{self.scanner_path}/scan", params=params, data=scanData, timeout=500)
         except:
             # try again
             logging.warning("Server timeout, retrying once")
             logging.warning("Increase timeout if you scan large files")
-            res = req.post(f"{self.scanner_path}/scan", params=params, data=scanData, timeout=10)
+            res = req.post(f"{self.scanner_path}/scan", params=params, data=scanData, timeout=500)
         jsonRes = res.json()
         scanTime = round(time.time() - timeStart, 3)
 
